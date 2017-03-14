@@ -40,17 +40,18 @@ LONGLONG stdInsert(T &set, const std::vector<std::string> &insertStrings) {
 }
 
 template <typename T>
-LONGLONG stdSearch(const T &set, const std::vector<std::string> &searchStrings) {
+std::pair<LONGLONG, size_t> stdSearch(const T &set, const std::vector<std::string> &searchStrings) {
 	LARGE_INTEGER startTick, endTick;
 	auto setEnd = set.end();
+	size_t numFound = 0;
 
 	QueryPerformanceCounter(&startTick);
 	for (auto &s : searchStrings) {
-		set.find(s) != setEnd;
+		numFound += set.find(s) != setEnd;
 	}
 	QueryPerformanceCounter(&endTick);
 
-	return endTick.QuadPart - startTick.QuadPart;
+	return std::make_pair(endTick.QuadPart - startTick.QuadPart, numFound);
 }
 
 LONGLONG trieInsert(trie &t, const std::vector<std::string> &insertStrings) {
@@ -64,7 +65,7 @@ LONGLONG trieInsert(trie &t, const std::vector<std::string> &insertStrings) {
 	return endTick.QuadPart - startTick.QuadPart;
 }
 
-LONGLONG trieSearch(const trie &t, const std::vector<std::string> &searchStrings) {
+std::pair<LONGLONG, size_t> trieSearch(const trie &t, const std::vector<std::string> &searchStrings) {
 	LARGE_INTEGER startTick, endTick;
 	size_t numFound = 0;
 
@@ -74,9 +75,7 @@ LONGLONG trieSearch(const trie &t, const std::vector<std::string> &searchStrings
 	}
 	QueryPerformanceCounter(&endTick);
 
-	std::cout << numFound << std::endl;
-
-	return endTick.QuadPart - startTick.QuadPart;
+	return std::make_pair(endTick.QuadPart - startTick.QuadPart, numFound);
 }
 
 
@@ -86,6 +85,11 @@ int main(int argc, char ** argv) {
 		// and the set of strings that will be searched for in the DS after the strings in the storefile have been stored
 		std::cout << "Usage: " << std::endl;
 		std::cout << argv[0] << " <storefile> <searchfile>" << std::endl;
+		std::cout << "Called: ";
+		for (int i = 0; i < argc; ++i) {
+			std::cout << argv[i] << " ";
+		}
+		std::cout << std::endl;
 		return 1;
 	}
 
@@ -111,25 +115,36 @@ int main(int argc, char ** argv) {
 	const size_t UNORDERED_SET = 1;
 	const size_t TRIE = 2;
 	LARGE_INTEGER insertTicks[NUM_DATA_STRUCTURES], searchTicks[NUM_DATA_STRUCTURES];
+	size_t numFound[NUM_DATA_STRUCTURES];
 
 	// first perform tests on set
 	std::set<std::string> set;
+	std::pair<LONGLONG, size_t> result;
 	insertTicks[SET].QuadPart = stdInsert<std::set<std::string>>(set, storeStrings);
-	searchTicks[SET].QuadPart = stdSearch<std::set<std::string>>(set, searchStrings);
-	
+	result = stdSearch<std::set<std::string>>(set, searchStrings);
+	searchTicks[SET].QuadPart = result.first;
+	numFound[SET] = result.second;
+
 	// now unordered_set
 	std::unordered_set<std::string> unordered_set;
 	insertTicks[UNORDERED_SET].QuadPart = stdInsert<std::unordered_set<std::string>>(unordered_set, storeStrings);
-	searchTicks[UNORDERED_SET].QuadPart = stdSearch<std::unordered_set<std::string>>(unordered_set, searchStrings);
+	result = stdSearch<std::unordered_set<std::string>>(unordered_set, searchStrings);
+	searchTicks[UNORDERED_SET].QuadPart = result.first;
+	numFound[UNORDERED_SET] = result.second;
 
 	// now trie
 	trie t;
 	insertTicks[TRIE].QuadPart = trieInsert(t, storeStrings);
-	searchTicks[TRIE].QuadPart = trieSearch(t, searchStrings);
+	result = trieSearch(t, searchStrings);
+	searchTicks[TRIE].QuadPart = result.first;
+	numFound[TRIE] = result.second;
 
-	// create a simple CSV
-	std::cout << "datastructure,insertwords,searchwords,insert,search" << std::endl;
-	std::cout << "set," << storeStrings.size() << "," << searchStrings.size() << "," << insertTicks[SET].QuadPart << "," << searchTicks[SET].QuadPart << std::endl;
-	std::cout << "unordered_set," << storeStrings.size() << "," << searchStrings.size() << "," << insertTicks[UNORDERED_SET].QuadPart << "," << searchTicks[UNORDERED_SET].QuadPart << std::endl;
-	std::cout << "trie," << storeStrings.size() << "," << searchStrings.size() << "," << insertTicks[TRIE].QuadPart << "," << searchTicks[TRIE].QuadPart << std::endl;
+	// output CSV rows
+	// std::cout << "insertfile,searchfile,insertwords,searchwords,setfound,uosfound,triefound,setinsert,uosinsert,trieinsert,setsearch,uossearch,triesearch" << std::endl;
+	std::cout << argv[1] << "," << argv[2] << ","
+		<< storeStrings.size() << "," << searchStrings.size() << "," 
+		<< numFound[SET] << "," << numFound[UNORDERED_SET] << "," << numFound[TRIE] << ","
+		<< insertTicks[SET].QuadPart << "," << insertTicks[UNORDERED_SET].QuadPart << "," << insertTicks[TRIE].QuadPart << "," 
+		<< searchTicks[SET].QuadPart << "," << searchTicks[UNORDERED_SET].QuadPart << "," << searchTicks[TRIE].QuadPart 
+		<< std::endl;
 }
