@@ -193,7 +193,7 @@ States, and the Acceptance of Congress, become the Seat of the Government
 of the United States, and to exercise like Authority over all Places
 purchased by the Consent of the Legislature of the State in which the Same
 shall be for the Erection of Forts, Magazines, Arsenals, dock-Yards, and
-other needful Buildings;ÄAnd To make all Laws which shall be necessary and
+other needful Buildings; And To make all Laws which shall be necessary and
 proper for carrying into Execution the foregoing Powers, and all other
 Powers vested by this Constitution in the Government of the United States,
 or in any Department or Officer thereof.
@@ -307,7 +307,7 @@ within that Period any other Emolument from the United States, or any of
 them.
 
     Before he enter on the Execution of his Office, he shall take the following
-Oath or Affirmation:Ä-"I do solemnly swear (or affirm) that I will
+Oath or Affirmation: -"I do solemnly swear (or affirm) that I will
 faithfully execute the Office of President of the United States, and will
 to the best of my Ability, preserve, protect and defend the Constitution of
 the United States."
@@ -358,12 +358,12 @@ be diminished during their continuance in Office.
 
      Section 2. The judicial Power shall extend to all Cases, in Law and
 Equity, arising under this Constitution, the Laws of the United States, and
-Treaties made, or which shall be made, under their Authority;Äto all Cases
-affecting Ambassadors, other public Ministers and Consuls;Äto all Cases of
-admiralty and maritime Jurisdiction;Äto Controversies to which the United
-States shall be a Party;Äto Controversies between two or more States;
-between a State and Citizens of another State;Äbetween Citizens of
-different States;Äbetween Citizens of the same State claiming Lands under
+Treaties made, or which shall be made, under their Authority; to all Cases
+affecting Ambassadors, other public Ministers and Consuls; to all Cases of
+admiralty and maritime Jurisdiction; to Controversies to which the United
+States shall be a Party; to Controversies between two or more States;
+between a State and Citizens of another State; between Citizens of
+different States; between Citizens of the same State claiming Lands under
 Grants of different States, and between a State, or the Citizens thereof,
 and foreign States, Citizens or Subjects.
 
@@ -553,10 +553,10 @@ person voted for as Vice-President, and they shall make distinct lists of
 all persons voted for as President, and of all persons voted for as
 Vice-Presidents, and of the number of votes for each, which lists they
 shall sign and certify, and transmit sealed to the seat of the government
-of the United States, directed to the President of the Senate;ÄThe
+of the United States, directed to the President of the Senate; The
 President of the Senate shall, in the presence of the Senate and House of
 Representatives, open all the certificates and the votes shall then be
-counted;ÄThe person having the greatest number of votes for President,
+counted; The person having the greatest number of votes for President,
 shall be the President, if such number be a majority of the whole number of
 Electors appointed; and if no person have such majority, then from the
 persons having the highest numbers not exceeding three on the list of those
@@ -569,7 +569,7 @@ necessary to a choice. And if the House of Representatives shall not choose
 a President whenever the right of choice shall devolve upon them, before
 the fourth day of March next following, then the Vice-President shall act
 as President, as in the case of the death or other constitutional
-disability of the President.ÄThe person having the greatest number of
+disability of the President. The person having the greatest number of
 votes as Vice-President, shall be Vice-President, if such number be a
 majority of the whole number of Electors appointed, and if no person have a
 majority, then from the two highest numbers on the list, the Senate shall
